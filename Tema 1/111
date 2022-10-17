@@ -1,0 +1,34 @@
+
+    • http://www.google.com
+Comandament utilitzat:
+curl -sSL -D - http://www.google.com -o /dev/null
+
+Resultat:
+HTTP/1.1 200 O
+Content-Type: text/html; charset=ISO-8859-1
+
+
+    • http://google.com
+Comandament utilitzat:
+curl -sSL -D - http://google.com -o /dev/null
+
+Resultat:
+HTTP/1.1 301 Moved Permanently
+Content-Type: text/html; charset=ISO-8859-1
+
+    • https://www.google.com
+Comandament utilitzat:
+curl -sSL -D - https://www.google.com -o /dev/null
+
+Resultat:
+HTTP/2 200 
+content-type: text/html; charset=ISO-8859-1
+
+
+    • https://www.google.com/x
+Comandament utilitzat:
+curl -sSL -D - https://google.com -o /dev/null
+
+Resultat:
+HTTP/2 404 
+content-type: text/html; charset=UTF-8
