@@ -17,22 +17,31 @@ try {
         ':poster' => '',
         ':genre_id' => '18'
     ]);
-    echo $a->rowCount();
 
     $b = $pdo->prepare('UPDATE movie SET title= :copia WHERE title= :title ');
     $b->execute([
         ':title' => 'Dune',
         ':copia' => 'Dune_copia'
     ]);
-    echo $b->rowCount();
 
-    $c = $pdo->prepare('INSERT INTO genre (id, name, number_of_movies) VALUES (:id, :name, :number_of_movies)');
+    $c = $pdo->prepare('INSERT INTO genre (id, name, number_of_movies) VALUES (:id, :name, :number_of_movies)
+                        AND UPDATE movie SET genre_id= :genre_id');
     $c->execute([
-       ':id' => 10,
-       ':name' => 'Sci-Fi',
-       ':number_of_movies' => ''
+        ':id' => 10,
+        ':name' => 'Sci-Fi',
+        ':number_of_movies' => '',
+        ':genre_id' => 10
     ]);
-    echo $c->rowCount();
+
+    $d = $pdo->prepare('DELETE FROM genre WHERE id= :id');
+    $d->execute([
+       ':id' => 10
+    ]);
+
+    $e = $pdo->prepare('DELETE FROM movie WHERE id= :id AND DELETE FROM genre WHERE id= :id');
+    $e->execute([
+        ':id' => 10
+    ]);
 
 
 } catch (PDOException $e){
